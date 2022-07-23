@@ -12,5 +12,6 @@ public class MainAdapterPattern {
         ChineseAdapter chineseAdapter = new ChineseAdapter(new EnglishContent("Hello"));
         String res = chineseAdapter.translate();
         System.out.println(res);    // 你好
+
     }
 }
