@@ -7,7 +7,7 @@ package cn.lnd.methodology.solid.dip.ioc.second;
  */
 public abstract class TestCase {
     public void run() {
-        if (doTest()){
+        if (doTest()){ // doTest()是测试代码运行的结果，成功或失败
             System.out.println("Test succeed");
         }else {
             System.out.println("Test failed");

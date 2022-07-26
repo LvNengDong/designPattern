@@ -8,6 +8,7 @@ package cn.lnd.methodology.solid.dip.ioc.first;
 public class UserServiceTest {
 
     public static boolean doTest(){
+        // 测试代码实现
         // return true or false
         return true;
     }
