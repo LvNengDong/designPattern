@@ -1,4 +1,4 @@
-package cn.lnd.observer.case1;
+package cn.lnd.observer.demo01;
 
 import java.util.ArrayList;
 import java.util.List;

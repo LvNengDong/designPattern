@@ -1,6 +1,4 @@
-package cn.lnd.observer.case1;
-
-import java.util.List;
+package cn.lnd.observer.demo01;
 
 /**
  * @Author lnd
