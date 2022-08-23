@@ -21,7 +21,7 @@ public class MainApp {
 
     public static void main(String[] args) {
         Message message = new Message();
-        message.setMsg("欢迎来到<script>澳门皇家赌场");
+        message.setMsg("欢迎来到<script>澳门皇家赌场，记住网址：baidu.com");
         /*
             需求1：
                 1、<script> 可能是非内容部分，需要替换掉
@@ -41,23 +41,22 @@ public class MainApp {
             需求2：
                 对消息的处理还不确定，还有可能在将来添加其它各种各样的过滤条件。
         */
-        //new HTMLFilter().doFilter(message);
-        //new SensitiveFilter().doFilter(message);
-        //System.out.println(message.getMsg());
+        new HTMLFilter().doFilter(message);
+        new SensitiveFilter().doFilter(message);
+        System.out.println(message.getMsg());
         /* 这种方式在添加新的过滤规则时，还是需要修改原有的代码，添加新的 Filter。
         这时我们考虑到的一种优化方式就是将所有的 Filter 串成一串 */
 
-        //List<Filter> filters = new ArrayList<>();
-        //filters.add(new HTMLFilter());
-        //filters.add(new SensitiveFilter());
-        //for (Filter filter : filters) {
-        //    filter.doFilter(message);
-        //}
-        //System.out.println(message.getMsg());
+        List<Filter> filters = new ArrayList<>();
+        filters.add(new HTMLFilter());
+        filters.add(new SensitiveFilter());
+        for (Filter filter : filters) {
+            filter.doFilter(message);
+        }
+        System.out.println(message.getMsg());
 
         /*
             相较于上一种方式，这种方式最大的区别就是：两个链条（FilterChain）可以连在一起。
-
         */
         FilterChain fc = new FilterChain();
         fc.add(new HTMLFilter());
@@ -86,7 +85,6 @@ class Message{
                 "msg='" + msg + '\'' +
                 '}';
     }
-
 }
 
 

@@ -13,12 +13,6 @@ import java.util.List;
  * @Date 2022/8/21 19:40
  */
 public class MainApp {
-    /*
-        模拟场景：
-            在论坛中发表文章。
-            后台要经过信息处理才可以发表或者进入数据库。
-                信息处理：就是一系列审核过程，如敏感词过滤、数据脱敏等...
-    */
 
     public static void main(String[] args) {
         Request request = new Request();

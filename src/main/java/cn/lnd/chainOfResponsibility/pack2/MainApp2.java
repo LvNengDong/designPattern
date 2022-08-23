@@ -62,7 +62,6 @@ interface Filter{
     boolean doFilter(Message message);
 }
 class HTMLFilter implements Filter{
-
     @Override
     public boolean doFilter(Message message) {
         String str = message.getMsg();
@@ -90,6 +89,7 @@ class FaceFilter implements Filter{
         return true;
     }
 }
+
 class URLFilter implements Filter{
     @Override
     public boolean doFilter(Message message) {
@@ -99,15 +99,13 @@ class URLFilter implements Filter{
         return true;
     }
 }
+
 class FilterChain implements Filter{
     List<Filter> filters = new ArrayList<>();
 
     public FilterChain add(Filter filter){
         filters.add(filter);
         return this;
-    }
-    public void delete(Filter filter){
-        filters.remove(filter);
     }
 
     /*
