@@ -7,6 +7,6 @@ package cn.lnd.observer.demo03.service;
  */
 public class PromotionService {
     public void issueNewUserExperienceCash(long userId) {
-        //注册成功后向新用户发送代金券
+        System.out.println("注册成功后向新用户发送代金券");
     }
 }

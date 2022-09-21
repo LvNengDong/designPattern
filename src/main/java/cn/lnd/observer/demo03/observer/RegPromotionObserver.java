@@ -14,7 +14,7 @@ public class RegPromotionObserver {
 
     /*通过这个注解来标明类中哪个函数可以接收观察者发送的消息*/
     @Subscribe
-    public void handleSuccess(long userId){
+    public void handleSuccess(Long userId){
         promotionService.issueNewUserExperienceCash(userId);
     }
 }

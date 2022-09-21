@@ -13,7 +13,7 @@ public class RegNotificationObserver {
 
     /*通过这个注解来标明类中哪个函数可以接收观察者发送的消息*/
     @Subscribe
-    public void handleRegSuccess(long userId){
+    public void handleRegSuccess(Long userId){ //注意，此处的类型一定要与event的类型完全匹配，比如 long 和 Long 也是不行的
         notificationService.sendInboxMessage(userId, "....");
     }
 }
