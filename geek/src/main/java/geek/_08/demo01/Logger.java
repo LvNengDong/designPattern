@@ -24,9 +24,6 @@ public abstract class Logger {
         doLog(level, message);
     }
 
-    private void doLog(Level level, String message) {
 
-    }
-
-    //protected abstract void doLog(Level level, String message);
+    protected abstract void doLog(Level level, String message);
 }
