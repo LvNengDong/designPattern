@@ -1,4 +1,9 @@
-package geek._44.demo01;
+package geek._44.demo06;
+
+import geek._44.demo01.IRuleConfigParser;
+import geek._44.demo01.InvalidRuleConfigException;
+import geek._44.demo01.RuleConfig;
+import geek._44.demo05.*;
 
 /**
  * @Author lnd
@@ -7,21 +12,14 @@ package geek._44.demo01;
  */
 public class RuleConfigSource {
 
-    public RuleConfig load(String ruleConfigFilePath) {
+    public RuleConfig load(String ruleConfigFilePath) throws InvalidRuleConfigException {
         String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);
-        IRuleConfigParser parser = null;
-        if ("json".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new JsonRuleConfigParser();
-        } else if ("xml".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new XmlRuleConfigParser();
-        } else if ("yaml".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new YamlRuleConfigParser();
-        } else if ("properties".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new PropertiesRuleConfigParser();
-        } else {
+        IRuleConfigParserFactory parserFactory = RuleConfgParserFactoryMap.getParserFactory(ruleConfigFileExtension);
+        if (parserFactory == null) {
             throw new InvalidRuleConfigException("Rule config file format is not supported: " + ruleConfigFilePath);
         }
         String configText = "";
+        IRuleConfigParser parser = parserFactory.createParser();
         //从ruleConfigFilePath文件中读取配置文本到configText中
         RuleConfig ruleConfig = parser.parse(configText);
         return ruleConfig;

@@ -7,7 +7,7 @@ import geek._44.demo01.*;
  * @Description
  * @Date 2024/3/27 19:00
  */
-public class RuleConfigSourceV2 {
+public class RuleConfigSource {
 
     public RuleConfig load(String ruleConfigFilePath) {
         String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);
@@ -21,10 +21,12 @@ public class RuleConfigSourceV2 {
         RuleConfig ruleConfig = parser.parse(configText);
         return ruleConfig;
     }
+
     private String getFileExtension(String filePath) {
         //...解析文件名获取扩展名，比如rule.json，返回json
         return "json";
     }
+
     private IRuleConfigParser createParser(String configFormat) {
         IRuleConfigParser parser = null;
         if ("json".equalsIgnoreCase(configFormat)) {

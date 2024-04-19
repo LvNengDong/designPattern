@@ -1,4 +1,6 @@
-package geek._44.demo01;
+package geek._44.demo05;
+
+import geek._44.demo01.*;
 
 /**
  * @Author lnd
@@ -9,19 +11,20 @@ public class RuleConfigSource {
 
     public RuleConfig load(String ruleConfigFilePath) {
         String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);
-        IRuleConfigParser parser = null;
+        IRuleConfigParserFactory parserFactory = null;
         if ("json".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new JsonRuleConfigParser();
+            parserFactory = new JsonRuleConfigParserFactory();
         } else if ("xml".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new XmlRuleConfigParser();
+            parserFactory = new XmlRuleConfigParserFactory();
         } else if ("yaml".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new YamlRuleConfigParser();
+            parserFactory = new YamlRuleConfigParserFactory();
         } else if ("properties".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new PropertiesRuleConfigParser();
+            parserFactory = new PropertiesRuleConfigParserFactory();
         } else {
             throw new InvalidRuleConfigException("Rule config file format is not supported: " + ruleConfigFilePath);
         }
         String configText = "";
+        IRuleConfigParser parser = parserFactory.createParser();
         //从ruleConfigFilePath文件中读取配置文本到configText中
         RuleConfig ruleConfig = parser.parse(configText);
         return ruleConfig;
